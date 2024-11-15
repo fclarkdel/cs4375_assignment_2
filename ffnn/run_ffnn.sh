@@ -1,0 +1,1 @@
+python3 ./ffnn/ffnn.py --hidden_dim 10 --epochs 100 --train_data ./training.json --val_data ./validation.json
