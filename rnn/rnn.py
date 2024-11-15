@@ -25,6 +25,7 @@ class RNN(nn.Module):
         self.numOfLayer = 1
         self.rnn = nn.RNN(input_dim, h, self.numOfLayer, nonlinearity='tanh')
         self.W = nn.Linear(h, 5)
+        self.activation = nn.ReLU()
         self.softmax = nn.LogSoftmax(dim=1)
         self.loss = nn.NLLLoss()
 
@@ -36,10 +37,10 @@ class RNN(nn.Module):
         _, hidden = self.rnn(inputs)
 
         # [to fill] obtain output layer representations
-        affine = self.W(hidden)
+        z = self.activation(self.W(hidden))
 
         # [to fill] sum over output
-        summed = affine.sum(dim=0)
+        summed = z.sum(dim=0)
 
         # [to fill] obtain probability dist.
         return self.softmax(summed)
